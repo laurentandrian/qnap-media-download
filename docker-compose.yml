@@ -12,7 +12,7 @@ services:
       - /share/Container/radarr:/config
       - /share/Multimedia:/multimedia
       - /share/external/DEV3305_1:/external
-    
+      - /share/CACHEDEV1_DATA/Download:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -26,6 +26,7 @@ services:
     volumes:
       - /share/Container/sonarr:/config
       - /share/external/DEV3305_1/Series:/Series
+      - /share/CACHEDEV1_DATA/Download:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
