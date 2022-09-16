@@ -1,0 +1,74 @@
+version: '3'
+
+services:
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Europe/Paris
+    volumes:
+      - /share/Container/radarr:/config
+      - /share/Multimedia:/multimedia
+      - /share/external/DEV3305_1:/external
+    
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Europe/Paris
+    volumes:
+      - /share/Container/sonarr:/config
+      - /share/external/DEV3305_1/Series:/Series
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+  jackett:
+    container_name: jackett
+    image: linuxserver/jackett:latest
+    restart: unless-stopped
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Europe/Paris
+    volumes:
+      - /share/Container/jackett:/config
+    ports:
+      - 9117:9117
+    restart: unless-stopped
+  bazarr:
+    container_name: bazarr
+    image: linuxserver/bazarr
+    restart: unless-stopped
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Europe/Paris
+    volumes:
+      - /share/Container/bazaar:/config    
+      - /share/Multimedia:/multimedia
+      - /share/external/DEV3305_1:/external
+    ports:
+      - 6767:6767
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Europe/Paris
+      - WEBUI_PORT=6363
+    volumes:
+      - /share/Container/qbt:/config 
+      - /share/CACHEDEV1_DATA/Download:/downloads
+    ports:
+      - 6363:6363
+      - 6881:6881
+      - 6881:6881/udp
+    restart: unless-stopped
