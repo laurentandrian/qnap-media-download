@@ -2,7 +2,7 @@ version: '3'
 
 services:
   radarr:
-    image: linuxserver/radarr
+    image: linuxserver/radarr:latest
     container_name: radarr
     environment:
       - PUID=0
@@ -17,7 +17,7 @@ services:
       - 7878:7878
     restart: unless-stopped
   sonarr:
-    image: linuxserver/sonarr
+    image: linuxserver/sonarr:latest
     container_name: sonarr
     environment:
       - PUID=0
@@ -45,7 +45,7 @@ services:
     restart: unless-stopped
   bazarr:
     container_name: bazarr
-    image: linuxserver/bazarr
+    image: linuxserver/bazarr:latest
     restart: unless-stopped
     environment:
       - PUID=0
